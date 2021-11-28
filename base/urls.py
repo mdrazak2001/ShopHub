@@ -3,6 +3,9 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
-    # path('buyer/login/', views.buyerLogin, name="buyer-login"),
-    # path('buyer/register/', views.buyerRegister, name="buyer-register"),
+    path('login/', views.userLogin, name="login"),
+    path('register/', views.userRegister, name="register"),
+    path('logout/', views.userLogout, name="logout"),
+    path('token/', views.token_send, name="token_send"),
+    path('verify/<auth_token>', views.verify, name="verify"),
 ]

@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {{ message }}
+            </li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+
+{% if page == 'login' %}
+<div>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Username">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password">
+
+        <input type="Submit" value="Login" />
+    </form>
+    <p>Havent Signed Up Yet ??</p>
+    <a href="{% url 'register' %}">Sign UP</a>
+</div>
+{% else %}
+<div>
+    <form method="post" action="">
+        {% csrf_token %}
+
+
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Username">
+
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="email">
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password">
+
+        <input type="Submit" value="Login" />
+    </form>
+</div>
+
+{% endif %}
+
+{% endblock content %}
