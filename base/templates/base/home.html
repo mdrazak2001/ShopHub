@@ -3,5 +3,7 @@
 {% block content %}
 
 <h1>Home Page</h1>
-
+{% for p in user_products %}
+{{p}}
+{% endfor %}
 {% endblock %}

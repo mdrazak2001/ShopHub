@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Add product {{request.user.username}}</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }}: {{ field }}
+    </div>
+    {% endfor %}
+    <p><input type="submit" value="Send message" /></p>
+</form>
+
+{% endblock content %}

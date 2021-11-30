@@ -8,13 +8,22 @@ from django.conf import settings
 from django.core.mail import send_mail
 import os
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .forms import *
 
 
 def home(request):
-    # print(os.environ.get('EMAIL_HOST_PASSWORD'))
-    t = os.environ.get('EMAIL_HOST_USER')
-    print(t)
-    return render(request, 'base/home.html')
+    user_products = Product.objects.all()
+    # profile specific products
+    # try:
+    #     if request.user.is_authenticated and not request.user.is_superuser:
+    #         user = request.user
+    #         for profile in Profile.objects.all():
+    #             if profile.user == user:
+    #                 user_products = profile.product_set.all()
+    # except Exception as e:
+    #     print(e)
+    return render(request, 'base/home.html', {'user_products': user_products})
 
 
 def userLogout(request):
@@ -23,6 +32,8 @@ def userLogout(request):
 
 
 def userLogin(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         username = request.POST.get('username')
         # email = request.POST.get('email')
@@ -51,6 +62,8 @@ def userLogin(request):
 
 
 def userRegister(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -112,3 +125,24 @@ def verify(request, auth_token):
                 request, messages.INFO, 'error occured')
     except Exception as e:
         print(e)
+
+
+@login_required(login_url='login')
+def addProduct(request):
+    form = ProductForm()
+    if request.method == 'POST':
+        price = request.POST.get('price_in_rupees')
+        product_name = request.POST.get('product_name')
+        descripton = request.POST.get('descripton')
+        photo = request.POST.get('photo')
+        user = request.user
+        try:
+            for profile in Profile.objects.all():
+                if profile.user == user:
+                    product_ob = Product.objects.create(created_by=profile, price_in_rupees=price,
+                                                        product_name=product_name, photo=photo, descripton=descripton)
+                    product_ob.save()
+        except Exception as e:
+            print(e)
+
+    return render(request, 'base/add_product.html', {'form': form})

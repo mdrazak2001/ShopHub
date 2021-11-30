@@ -8,4 +8,5 @@ urlpatterns = [
     path('logout/', views.userLogout, name="logout"),
     path('token/', views.token_send, name="token_send"),
     path('verify/<auth_token>', views.verify, name="verify"),
+    path('addproduct/', views.addProduct, name="add-product"),
 ]

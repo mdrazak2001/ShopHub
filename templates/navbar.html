@@ -2,6 +2,9 @@
     <a href="/">
         <h1>LOGO</h1>
     </a>
+    {% if request.user.is_superuser %}
+    <h1>Hello Admin</h1>
+    {% endif %}
     {% if request.user.is_authenticated  %}
     <h1>{{request.user.username}}</h1>
     <a href="{% url 'logout' %}">Logout</a>
