@@ -10,20 +10,14 @@ import os
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import *
+from django.http import HttpResponseRedirect
+import time
 
 
 def home(request):
-    user_products = Product.objects.all()
-    # profile specific products
-    # try:
-    #     if request.user.is_authenticated and not request.user.is_superuser:
-    #         user = request.user
-    #         for profile in Profile.objects.all():
-    #             if profile.user == user:
-    #                 user_products = profile.product_set.all()
-    # except Exception as e:
-    #     print(e)
-    return render(request, 'base/home.html', {'user_products': user_products})
+    # user = request.user
+    # print(user.password)
+    return render(request, 'base/home.html')
 
 
 def userLogout(request):
@@ -91,8 +85,8 @@ def userRegister(request):
 
         except Exception as e:
             print(e)
-
-    return render(request, 'base/login_register.html')
+    page = 'register'
+    return render(request, 'base/login_register.html', {'page': page})
 
 
 def token_send(request):
@@ -137,12 +131,76 @@ def addProduct(request):
         photo = request.POST.get('photo')
         user = request.user
         try:
-            for profile in Profile.objects.all():
-                if profile.user == user:
-                    product_ob = Product.objects.create(created_by=profile, price_in_rupees=price,
-                                                        product_name=product_name, photo=photo, descripton=descripton)
-                    product_ob.save()
+            profile = Profile.objects.filter(user=user).first()
+            product_ob = Product.objects.create(created_by=profile, price_in_rupees=price,
+                                                product_name=product_name, photo=photo, descripton=descripton)
+            product_ob.save()
+
         except Exception as e:
             print(e)
 
     return render(request, 'base/add_product.html', {'form': form})
+
+
+def forgotPassword(request):
+    page = 'forgot'
+    if request.user.is_authenticated:
+        return redirect('home')
+    try:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            if not User.objects.filter(username=username).first():
+                messages.add_message(
+                    request, messages.INFO, 'no such accout')
+                return redirect('forgot-password')
+
+            user_obj = User.objects.filter(username=username).first()
+            email = user_obj.email
+            profile_obj = Profile.objects.filter(user=user_obj).first()
+            auth_token = profile_obj.auth_token
+            send_mail_after_forgot(email, auth_token)
+            messages.add_message(
+                request, messages.INFO, 'Check Mail for reset link')
+
+    except Exception as e:
+        print(e)
+
+    return render(request, 'base/login_register.html', {'page': page})
+
+
+def send_mail_after_forgot(email, token):
+    subject = 'Your Forgot password link'
+    message = f'Hi click on the link to reset your password http://127.0.0.1:8000/changepassword/{token}'
+    email_from = settings.EMAIL_HOST_USER
+    send_mail(subject, message, email_from, [email])
+
+
+def changePassword(request, auth_token):
+    if request.user.is_authenticated:
+        return redirect('home')
+    token = auth_token
+    if request.method == 'POST':
+        try:
+            profile_obj = Profile.objects.filter(auth_token=token).first()
+            if profile_obj is not None:
+                p1 = request.POST['p1']
+                p2 = request.POST['p2']
+                if p1 != p2:
+                    messages.add_message(
+                        request, messages.INFO, 'Passwords dont match Re enter')
+                    return redirect(f'/changepassword/{token}')
+                user = profile_obj.user
+                uo = User.objects.filter(username=user).first()
+                uo.set_password(p1)
+                uo.save()
+                messages.add_message(
+                    request, messages.INFO, 'Password Reset Try Logging in now!')
+                time.sleep(3)
+                return redirect('login')
+            else:
+                messages.add_message(
+                    request, messages.INFO, 'error occured')
+        except Exception as e:
+            print(e)
+
+    return render(request, 'base/changepassword.html')

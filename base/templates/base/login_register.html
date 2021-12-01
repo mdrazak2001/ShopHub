@@ -31,7 +31,21 @@
     <p>Havent Signed Up Yet ??</p>
     <a href="{% url 'register' %}">Sign UP</a>
 </div>
-{% else %}
+{% endif %}
+
+{%if page == 'forgot' %}
+<div>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Username">
+        <input type="Submit" value="Login" />
+    </form>
+</div>
+{% endif %}
+
+
+{%if page == 'register' %}
 <div>
     <form method="post" action="">
         {% csrf_token %}
@@ -51,5 +65,7 @@
 </div>
 
 {% endif %}
+
+
 
 {% endblock content %}
