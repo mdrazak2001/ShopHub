@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from django.http import HttpResponseRedirect
 import time
+from .mail import *
 
 
 def home(request):
@@ -59,22 +60,25 @@ def userRegister(request):
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
         try:
-            if User.objects.filter(username=username).first():
-                messages.add_message(request, messages.INFO, 'User name taken')
-                render(request, 'base/login_register.html')
-
-            if User.objects.filter(email=email).first():
+            if User.objects.filter(email=email).first() is not None:
+                print(User.objects.filter(email=email).first())
                 messages.add_message(
                     request, messages.INFO, 'email name taken')
                 render(request, 'base/login_register.html')
-            user_ob = User.objects.create(username=username, email=email)
-            user_ob.set_password(password)
-            user_ob.save()
-            auth_token = str(uuid.uuid4())
+
+            elif User.objects.filter(username=username).first() is not None:
+                messages.add_message(request, messages.INFO, 'User name taken')
+                render(request, 'base/login_register.html')
+
+            else:
+                user_ob = User.objects.create(username=username, email=email)
+                user_ob.set_password(password)
+                user_ob.save()
+                auth_token = str(uuid.uuid4())
 
             profile_ob = Profile.objects.create(
                 user=user_ob, auth_token=auth_token)
@@ -93,11 +97,11 @@ def token_send(request):
     return render(request, 'base/token.html')
 
 
-def send_mail_after_registration(email, token):
-    subject = 'Your account needs to be verified'
-    message = f'Hi paste the link to verify you account http://127.0.0.1:8000/verify/{token}'
-    email_from = settings.EMAIL_HOST_USER
-    send_mail(subject, message, email_from, [email])
+# def send_mail_after_registration(email, token):
+#     subject = 'Your account needs to be verified'
+#     message = f'Hi paste the link to verify you account http://127.0.0.1:8000/verify/{token}'
+#     email_from = settings.EMAIL_HOST_USER
+#     send_mail(subject, message, email_from, [email])
 
 
 def verify(request, auth_token):
@@ -168,11 +172,11 @@ def forgotPassword(request):
     return render(request, 'base/login_register.html', {'page': page})
 
 
-def send_mail_after_forgot(email, token):
-    subject = 'Your Forgot password link'
-    message = f'Hi click on the link to reset your password http://127.0.0.1:8000/changepassword/{token}'
-    email_from = settings.EMAIL_HOST_USER
-    send_mail(subject, message, email_from, [email])
+# def send_mail_after_forgot(email, token):
+#     subject = 'Your Forgot password link'
+#     message = f'Hi click on the link to reset your password http://127.0.0.1:8000/changepassword/{token}'
+#     email_from = settings.EMAIL_HOST_USER
+#     send_mail(subject, message, email_from, [email])
 
 
 def changePassword(request, auth_token):
