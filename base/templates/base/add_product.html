@@ -4,15 +4,19 @@
 
 <h1>Add product {{request.user.username}}</h1>
 
-<form action="" method="post">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+
     {% for field in form %}
     <div class="fieldWrapper">
         {{ field.errors }}
         {{ field.label_tag }}: {{ field }}
     </div>
     {% endfor %}
-    <p><input type="submit" value="Send message" /></p>
+    <label for="images">Select images:</label>
+    <input name="images" type="file" multiple="multiple">
+    <p><input type="submit" value="Create Product" /></p>
+
 </form>
 
 {% endblock content %}

@@ -3,7 +3,20 @@
 {% block content %}
 
 <h1>Home Page</h1>
-{% for p in user_products %}
-{{p}}
+{% for p in products%}
+<!-- <img src="{{i.images.url}}" alt=""> -->
+<div>
+    {{p.product_name}}
+</div>
+
+{% for i in p.productimage_set.all%}
+
+<div>
+    <img src="{{i.images.url}}" alt="" width="200" height="200">
+</div>
 {% endfor %}
+
+{% endfor %}
+
+
 {% endblock %}

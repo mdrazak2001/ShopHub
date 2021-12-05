@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
-# Create your views here.
 from .models import Profile
 import uuid
 from django.conf import settings
@@ -13,12 +12,14 @@ from .forms import *
 from django.http import HttpResponseRedirect
 import time
 from .mail import *
+# Create your views here.
 
 
 def home(request):
-    # user = request.user
-    # print(user.password)
-    return render(request, 'base/home.html')
+    context = {}
+    products = Product.objects.all()
+    context['products'] = products
+    return render(request, 'base/home.html', context)
 
 
 def userLogout(request):
@@ -30,9 +31,8 @@ def userLogin(request):
     if request.user.is_authenticated:
         return redirect('home')
     if request.method == 'POST':
-        username = request.POST.get('username')
-        # email = request.POST.get('email')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
         user_ob = User.objects.filter(username=username).first()
         if user_ob is None:
             messages.add_message(request, messages.INFO, 'User not found')
@@ -97,13 +97,6 @@ def token_send(request):
     return render(request, 'base/token.html')
 
 
-# def send_mail_after_registration(email, token):
-#     subject = 'Your account needs to be verified'
-#     message = f'Hi paste the link to verify you account http://127.0.0.1:8000/verify/{token}'
-#     email_from = settings.EMAIL_HOST_USER
-#     send_mail(subject, message, email_from, [email])
-
-
 def verify(request, auth_token):
     try:
         profile_obj = Profile.objects.filter(auth_token=auth_token).first()
@@ -132,14 +125,19 @@ def addProduct(request):
         price = request.POST.get('price_in_rupees')
         product_name = request.POST.get('product_name')
         descripton = request.POST.get('descripton')
-        photo = request.POST.get('photo')
+        Images = request.FILES.getlist('images')
+        # print(Images)
         user = request.user
         try:
             profile = Profile.objects.filter(user=user).first()
             product_ob = Product.objects.create(created_by=profile, price_in_rupees=price,
-                                                product_name=product_name, photo=photo, descripton=descripton)
+                                                product_name=product_name, descripton=descripton)
+            print(user)
             product_ob.save()
-
+            for image in Images:
+                pimg = ProductImage.objects.create(
+                    images=image, product=product_ob)
+                pimg.save()
         except Exception as e:
             print(e)
 
@@ -170,13 +168,6 @@ def forgotPassword(request):
         print(e)
 
     return render(request, 'base/login_register.html', {'page': page})
-
-
-# def send_mail_after_forgot(email, token):
-#     subject = 'Your Forgot password link'
-#     message = f'Hi click on the link to reset your password http://127.0.0.1:8000/changepassword/{token}'
-#     email_from = settings.EMAIL_HOST_USER
-#     send_mail(subject, message, email_from, [email])
 
 
 def changePassword(request, auth_token):
