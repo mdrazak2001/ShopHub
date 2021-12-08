@@ -1,7 +1,8 @@
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Profile
+from .models import *
 import uuid
 from django.conf import settings
 from django.core.mail import send_mail
@@ -12,12 +13,31 @@ from .forms import *
 from django.http import HttpResponseRedirect
 import time
 from .mail import *
+from datetime import datetime
+from django.utils import timezone
+import pytz
+from .singular import *
+
 # Create your views here.
+
+
+def get_localtime(utctime):
+    utc = utctime.replace(tzinfo=pytz.UTC)
+    localtz = utc.astimezone(timezone.get_current_timezone())
+    return localtz
 
 
 def home(request):
     context = {}
+    q = request.GET.get('q')
     products = Product.objects.all()
+    if q is not None:
+        q1 = convertToSingular(q)
+        products = Product.objects.filter(
+            Q(product_name__icontains=q) |
+            Q(product_name__icontains=q1)
+        )
+
     context['products'] = products
     return render(request, 'base/home.html', context)
 
@@ -37,21 +57,27 @@ def userLogin(request):
         if user_ob is None:
             messages.add_message(request, messages.INFO, 'User not found')
             return redirect('login')
-
         profile_ob = Profile.objects.filter(user=user_ob).first()
-
-        if profile_ob.is_verified == False:
+        if profile_ob is None:
+            user = authenticate(username=username, password=password)
+            if user is None:
+                messages.add_message(request, messages.INFO,
+                                     'Wrong creds')
+                return redirect('login')
+            login(request, user)
+            return redirect('home')
+        elif profile_ob.is_verified == False:
             messages.add_message(request, messages.INFO,
                                  'Your profile isnt verified check your mail')
             return redirect('login')
-
-        user = authenticate(username=username, password=password)
-        if user is None:
-            messages.add_message(request, messages.INFO,
-                                 'Wrong creds')
-            return redirect('login')
-        login(request, user)
-        return redirect('home')
+        else:
+            user = authenticate(username=username, password=password)
+            if user is None:
+                messages.add_message(request, messages.INFO,
+                                     'Wrong creds')
+                return redirect('login')
+            login(request, user)
+            return redirect('home')
     page = 'login'
     return render(request, 'base/login_register.html', {'page': page})
 
@@ -65,7 +91,6 @@ def userRegister(request):
         password = request.POST['password']
         try:
             if User.objects.filter(email=email).first() is not None:
-                print(User.objects.filter(email=email).first())
                 messages.add_message(
                     request, messages.INFO, 'email name taken')
                 render(request, 'base/login_register.html')
@@ -79,9 +104,9 @@ def userRegister(request):
                 user_ob.set_password(password)
                 user_ob.save()
                 auth_token = str(uuid.uuid4())
-
+            now = get_localtime(datetime.now())
             profile_ob = Profile.objects.create(
-                user=user_ob, auth_token=auth_token)
+                user=user_ob, auth_token=auth_token, created_at=now)
             profile_ob.save()
 
             send_mail_after_registration(email, auth_token)
@@ -128,16 +153,20 @@ def addProduct(request):
         Images = request.FILES.getlist('images')
         # print(Images)
         user = request.user
+        id = str(uuid.uuid4())
+        now = get_localtime(datetime.now())
         try:
             profile = Profile.objects.filter(user=user).first()
             product_ob = Product.objects.create(created_by=profile, price_in_rupees=price,
-                                                product_name=product_name, descripton=descripton)
-            print(user)
+                                                product_name=product_name, descripton=descripton, created_at=now)
+            # print(user)
             product_ob.save()
             for image in Images:
                 pimg = ProductImage.objects.create(
                     images=image, product=product_ob)
                 pimg.save()
+            time.sleep(1)
+            return redirect('home')
         except Exception as e:
             print(e)
 
@@ -190,7 +219,7 @@ def changePassword(request, auth_token):
                 uo.save()
                 messages.add_message(
                     request, messages.INFO, 'Password Reset Try Logging in now!')
-                time.sleep(3)
+                time.sleep(1)
                 return redirect('login')
             else:
                 messages.add_message(
@@ -199,3 +228,11 @@ def changePassword(request, auth_token):
             print(e)
 
     return render(request, 'base/changepassword.html')
+
+
+def viewProduct(request, pk):
+    context = {}
+    product = Product.objects.get(id=pk)
+    print(product.product_name)
+    context['product'] = product
+    return render(request, 'base/product.html', context)

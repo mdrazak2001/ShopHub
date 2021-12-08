@@ -31,6 +31,7 @@
     <p>Havent Signed Up Yet ??</p>
     <a href="{% url 'register' %}">Sign UP</a>
 </div>
+<a href="{% url 'forgot-password' %}">Forgot Password ?</a>
 {% endif %}
 
 {%if page == 'forgot' %}
@@ -65,7 +66,5 @@
 </div>
 
 {% endif %}
-
-
 
 {% endblock content %}

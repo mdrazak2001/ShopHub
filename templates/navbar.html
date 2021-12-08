@@ -1,17 +1,54 @@
-<div>
+<!-- <div>
     <a href="/">
         <h1>LOGO</h1>
     </a>
-    {% if request.user.is_superuser %}
-    <h1>Hello Admin</h1>
-    {% endif %}
-    {% if request.user.is_authenticated  %}
-    <h1>{{request.user.username}}</h1>
-    <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'forgot-password' %}">Forgot Password ?</a>
-    {% endif %}
+
+    <form method="get" action="{% url 'home' %}">
+        <input name="q" placeholder="Search for Products..." />
+    </form>
+
     <a href="{% url 'add-product' %}">List Products To SELL!!</a>
     <hr>
-</div>
+</div> -->
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Ecommerce</a>
+        </div>
+
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/">Page 1</a></li>
+            <li><a href="/">Page 2</a></li>
+        </ul>
+        {% if request.user.is_authenticated  %}
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                {% if request.user.is_superuser %}
+                <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+                    <img src="http://placehold.it/30x30" class="img-circle special-img">Admin {{request.user.username}}
+                    <b class="caret"></b></a>
+
+                {% else %}
+                <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+                    <img src="http://placehold.it/30x30" class="img-circle special-img"> {{request.user.username}} <b
+                        class="caret"></b></a>
+                {% endif %}
+                <ul class="dropdown-menu">
+                    <li><a href="/"><i class="fa fa-cog"></i> Account</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        {% else %}
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+        {% endif %}
+    </div>
+</nav>

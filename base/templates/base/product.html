@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<h1>{{product.product_name}} {{product.created_by}}</h1>
+
+{% for image in product.productimage_set.all %}
+<div>
+    <img src="{{image.images.url}}" alt="" width="200" height="200">
+</div>
+{% endfor %}
+
+
+{% endblock content %}
