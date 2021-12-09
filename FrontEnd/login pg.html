@@ -25,7 +25,7 @@
     <link rel="apple-touch-icon-precomposed"
         href="https://rvce.edu.in/sites/all/themes/omega/omega/apple-touch-icon-precomposed-72x72.png" sizes="72x72" />
     <meta name="viewport" content="width=device-width" />
-    <title>WITHOUT SIGN IN</title>
+    <title>LOGIN</title>
     <link type="text/css" rel="stylesheet"
         href="https://rvce.edu.in/sites/default/files/css/css_vSJUJPo75qsvkoUnKgyzbJHbQXMtSRbJeobje0chv_U.css"
         media="all" />
@@ -40,12 +40,12 @@
         href="https://rvce.edu.in/sites/default/files/css/css__gHmKb6iiQ92ec4TUIzTtAqZ7CIKgqwDHxI6h21e77w.css"
         media="all" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/FrontEnd/Header/styles.css">
     <link rel="stylesheet" href="logincss.css">
 </head>
 
 <body class="bodyClass">
+    <!-- HEADER -->
     <div>
 
         <!-- RVCE LOGO -->
@@ -79,10 +79,10 @@
             <div class="container-fluid"
                 style="display:inline-flex; float: right; padding: 10px; background-color:#27447E;width: 100%; margin-bottom: 20px; height:50px;">
                 
-                <a href="without login.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
-                <a href="without login.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
-                <a href="without login.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
-                <a href="without login.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
+                <a href="index.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
+                <a href="index.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
+                <a href="index.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
+                <a href="index.html"><button type="button" class="btn btn-light" id="navbarContent">Light</button></a>
 
             <!-- SEARCH BAR -->
 
@@ -99,28 +99,70 @@
                 
             <!-- DROPDOWN -->
 
-                <!-- <div class = "navbarDropdown">
+                <div class = "navbarDropdown">
                     <div class="dropdown">
                         <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/profile-icon.png" alt="" style="height: 25px; width: 25px;">
+                        <img src="/FrontEnd/Images/profile-icon.png" alt="" style="height: 25px; width: 25px;"> Name
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="without login.html">Action</a></li>
-                        <li><a class="dropdown-item" href="without login.html">Another action</a></li>
-                        <li><a class="dropdown-item" href="without login.html">Something else here</a></li>
+                        <li><a class="dropdown-item" href="index.html">Action</a></li>
+                        <li><a class="dropdown-item" href="index.html">Another action</a></li>
+                        <li><a class="dropdown-item" href="index.html">Something else here</a></li>
                         </ul>
                     </div>
-                </div>               -->
-
-            <!-- LOGIN BUTTON -->
-
-            <a href="/without login.html"><button class="btn btn-warning" type="submit" style="margin-right: 2%;">LOGIN</button></a>
+                </div>              
 
             </div>
         <!-- </nav> -->
 
     </div>
-    
+    <br><br><br>
+    <!-- LOGIN -->
+    <div class="container">
+        <form action="login pg.html">
+          <div class="row">
+            <div class="col-25">
+              <label for="userid">User ID</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="userid" name="username" placeholder="Your user id...">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="userid">Password</label>
+            </div>
+            <div class="col-75">
+              <input type="password" id="lname" name="lastname" placeholder="Password...">
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-25">
+              <label for="country">Country</label>
+            </div>
+            <div class="col-75">
+              <select id="country" name="country">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="subject">Subject</label>
+            </div>
+            <div class="col-75">
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            </div>
+          </div> -->
+          <br>
+          <div class="row">
+            <input type="submit" value="LOGIN">
+          </div>
+        </form>
+      </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
