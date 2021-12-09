@@ -236,3 +236,12 @@ def viewProduct(request, pk):
     print(product.product_name)
     context['product'] = product
     return render(request, 'base/product.html', context)
+
+
+def deleteProduct(request, pk):
+    what = 'product'
+    product = Product.objects.get(id=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', {'what': what, 'product': product})

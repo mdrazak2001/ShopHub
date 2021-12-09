@@ -16,6 +16,7 @@ urlpatterns = [
     path('verify/<auth_token>', views.verify, name="verify"),
     path('addproduct/', views.addProduct, name="add-product"),
     path('product/<str:pk>/', views.viewProduct, name="view-product"),
+    path('deleteproduct/<str:pk>/', views.deleteProduct, name="delete-product"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
