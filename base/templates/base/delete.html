@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <h1>Sure Delete "{{product.product_name}}" ? </h1>
+    {% for i in product.productimage_set.all %}
+    <img src="{{i.images.url}}" alt="" width="200" height="200">
+    {% endfor %}
+    <a href="{{request.META.HTTP_REFERER}}">GO BACK</a>
+    <input type="submit" value="Confirm" />
+</form>
+
+
+
+{% endblock %}
