@@ -3,6 +3,7 @@
 {% block content %}
 
 <h1>Home Page</h1>
+
 {% for p in products%}
 
 <div>
@@ -10,6 +11,11 @@
     {% if p.created_by.user.id == request.user.id or request.user.is_superuser%}
     <a href="{% url 'delete-product' p.id %}">Delete</a>
     {% endif %}
+    {% if request.user.id != p.created_by.user.id %}
+    <a href="{% url 'add-to-cart' p.id %}">Add to Cart</a>
+    {% endif %}
+    {{p.price_in_rupees}}
+
 </div>
 
 <div>

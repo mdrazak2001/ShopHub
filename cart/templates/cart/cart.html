@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Cart Page</h1>
+
+{% if cart.cartitem_set.first == none %}
+Fill cart
+{% else %}
+Hi {{user}}, Your Cart looks good !!
+{% endif %}
+
+
+{% for ci in cart.cartitem_set.all %}
+<div><a href="{%  url 'carti' ci.product.id%}">{{ci.product.product_name}}</a>
+    <a href="{% url 'carti' ci.product.id %}"><img src="{{ci.product.productimage_set.first.images.url}}" alt=""
+            width="200" height="200"></a>
+    <a href="{% url 'remove-item' ci.id %}">Remove Item</a>
+</div>
+
+{% endfor %}
+
+<h1>Total Price : {{cart.total_price}}</h1>
+
+{% endblock %}

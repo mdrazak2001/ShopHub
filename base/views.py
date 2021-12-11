@@ -2,6 +2,8 @@ from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
+
+from cart.models import *
 from .models import *
 import uuid
 from django.conf import settings
@@ -28,6 +30,7 @@ def get_localtime(utctime):
 
 
 def home(request):
+    # print("1")
     context = {}
     q = request.GET.get('q')
     products = Product.objects.all()
@@ -108,7 +111,8 @@ def userRegister(request):
             profile_ob = Profile.objects.create(
                 user=user_ob, auth_token=auth_token, created_at=now)
             profile_ob.save()
-
+            cart = Cart.objects.create(user=profile_ob)
+            cart.save()
             send_mail_after_registration(email, auth_token)
             return redirect('token_send')
 
@@ -245,3 +249,20 @@ def deleteProduct(request, pk):
         product.delete()
         return redirect('home')
     return render(request, 'base/delete.html', {'what': what, 'product': product})
+
+
+@login_required(login_url='login')
+def addToCart(request, pk):
+    user = request.user
+    pr_obj = Profile.objects.filter(user=user).first()
+    cart = Cart.objects.filter(user=pr_obj).first()
+    product = Product.objects.get(id=pk)
+    dup_exists = CartItem.objects.filter(cart=cart, product=product).first()
+    if not dup_exists:
+        cart_item = CartItem.objects.create(cart=cart, product=product)
+        cart_item.save()
+        price_of_product = Product.objects.get(id=cart_item.product.id)
+        cart = cart_item.cart
+        cart.total_price += price_of_product.price_in_rupees
+        cart.save()
+    return redirect('cart')
