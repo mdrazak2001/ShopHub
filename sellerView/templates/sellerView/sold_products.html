@@ -3,10 +3,22 @@
 {% block content %}
 
 <h1>Hello Seller, {{request.user}}, your sold products are : </h1>
-Bought by Price Name <br>
+Bought by &emsp; &emsp; Phone &emsp; &emsp; Price &emsp; &emsp; Product-Name &emsp; &emsp; Time &emsp; &emsp; Status
+<br>
 
 {% for o in orders %}
-{{o.bought_by}} {{o.product.price_in_rupees}} {{o.product.product_name}} {{o.time}} <br>
+{{o.bought_by}} &emsp; &emsp; {{o.bought_by.phone}} &emsp; &emsp; {{o.product.price_in_rupees}} &emsp; &emsp;
+<a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a> &emsp; &emsp;
+{{o.time}}
+{% if o.completed %}
+Done
+{% else %}
+Not Done
+{% endif %}
+
+
+<br>
 {% endfor %}
+
 
 {% endblock %}

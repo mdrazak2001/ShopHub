@@ -9,4 +9,4 @@ class ProductForm(ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
-        exclude = ['created_by', 'is_verified', 'created_at']
+        exclude = ['created_by', 'is_verified', 'created_at', 'is_sold']

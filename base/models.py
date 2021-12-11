@@ -12,6 +12,7 @@ class Profile(models.Model):
     auth_token = models.CharField(max_length=100)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField()
+    phone = models.CharField(default="0", max_length=12)
 
     def __str__(self):
         return self.user.username

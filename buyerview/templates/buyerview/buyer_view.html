@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Hello Buyer, {{request.user}}, products you bought are : </h1>
+Sold by &emsp; &emsp; Phone &emsp; &emsp; Price &emsp; &emsp; Product-Name &emsp; &emsp; Time &emsp; &emsp; Status<br>
+
+{% for o in orders %}
+{{o.sold_by}} &emsp; &emsp; {{o.sold_by.phone}} &emsp; &emsp; {{o.product.price_in_rupees}} &emsp; &emsp;
+<a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a> &emsp; &emsp;
+{{o.time}}
+{% if o.completed %}
+Done
+{% else %}
+Not Done
+{% endif %}
+
+<br>
+{% endfor %}
+
+{% endblock %}

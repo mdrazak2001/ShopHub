@@ -16,6 +16,7 @@ Hi {{user}}, Your Cart looks good !!
     <a href="{% url 'carti' ci.product.id %}"><img src="{{ci.product.productimage_set.first.images.url}}" alt=""
             width="200" height="200"></a>
     <a href="{% url 'remove-item' ci.id %}">Remove Item</a>
+    {{ci.product.price_in_rupees}}
 </div>
 
 {% endfor %}

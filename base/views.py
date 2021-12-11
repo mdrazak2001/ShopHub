@@ -92,6 +92,9 @@ def userRegister(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
+        phone = request.POST['phone']
+        f_name = request.POST['fname']
+        l_name = request.POST['lname']
         try:
             if User.objects.filter(email=email).first() is not None:
                 messages.add_message(
@@ -103,13 +106,15 @@ def userRegister(request):
                 render(request, 'base/login_register.html')
 
             else:
-                user_ob = User.objects.create(username=username, email=email)
+                user_ob = User.objects.create(
+                    username=username, email=email,
+                    first_name=f_name, last_name=l_name)
                 user_ob.set_password(password)
                 user_ob.save()
                 auth_token = str(uuid.uuid4())
             now = get_localtime(datetime.now())
             profile_ob = Profile.objects.create(
-                user=user_ob, auth_token=auth_token, created_at=now)
+                user=user_ob, auth_token=auth_token, created_at=now, phone=phone)
             profile_ob.save()
             cart = Cart.objects.create(user=profile_ob)
             cart.save()

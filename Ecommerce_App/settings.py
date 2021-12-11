@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'base',
     'cart',
     'sellerView',
-    'sellerview',
+    'buyerview',
 ]
 
 MIDDLEWARE = [
