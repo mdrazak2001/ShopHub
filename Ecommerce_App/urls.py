@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
     path('cart/', include('cart.urls')),
+    path('seller/', include('sellerView.urls')),
+    path('buyer/', include('buyerview.urls')),
 ]
 
 

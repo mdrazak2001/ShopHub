@@ -22,4 +22,9 @@ Hi {{user}}, Your Cart looks good !!
 
 <h1>Total Price : {{cart.total_price}}</h1>
 
+<form method="post" action="">
+    {% csrf_token %}
+    <p><input type="submit" value="BUY" /></p>
+</form>
+
 {% endblock %}

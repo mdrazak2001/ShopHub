@@ -2,11 +2,9 @@
 
 {% block content %}
 
-<h1>Home Page</h1>
+<h1>My Listed Products</h1>
 
 {% for p in products%}
-
-{% if not p.is_sold  %}
 
 <div>
     <a href="{% url 'view-product' p.id %}">{{p.product_name}}</a> {{p.created_at}}
@@ -16,15 +14,14 @@
     {% if request.user.id != p.created_by.user.id %}
     <a href="{% url 'add-to-cart' p.id %}">Add to Cart</a>
     {% endif %}
-    <span>&#8377;</span>{{p.price_in_rupees}}/-
+    <span>&#8377;</span>{{p.price_in_rupees}} /-
+
 </div>
 
 <div>
     <a href="{% url 'view-product' p.id %}"><img src="{{p.productimage_set.first.images.url}}" alt="" width="200"
             height="200"></a>
 </div>
-
-{% endif %}
 
 {% endfor %}
 

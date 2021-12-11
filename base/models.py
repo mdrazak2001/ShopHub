@@ -21,7 +21,7 @@ class Product(models.Model):
     created_by = models.ForeignKey(
         Profile, on_delete=models.CASCADE, default=None)
     created_at = models.DateTimeField()
-    is_verified = models.BooleanField(default=False)
+    is_sold = models.BooleanField(default=False)
     descripton = models.TextField(null=True, blank=True)
     product_name = models.TextField(null=True, blank=True)
     price_in_rupees = models.IntegerField(default=0)

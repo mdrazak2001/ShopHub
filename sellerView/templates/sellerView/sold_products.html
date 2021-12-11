@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Hello Seller, {{request.user}}, your sold products are : </h1>
+Bought by Price Name <br>
+
+{% for o in orders %}
+{{o.bought_by}} {{o.product.price_in_rupees}} {{o.product.product_name}} {{o.time}} <br>
+{% endfor %}
+
+{% endblock %}

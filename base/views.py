@@ -260,9 +260,12 @@ def addToCart(request, pk):
     dup_exists = CartItem.objects.filter(cart=cart, product=product).first()
     if not dup_exists:
         cart_item = CartItem.objects.create(cart=cart, product=product)
-        cart_item.save()
         price_of_product = Product.objects.get(id=cart_item.product.id)
+
         cart = cart_item.cart
         cart.total_price += price_of_product.price_in_rupees
         cart.save()
+        cart_item.price = price_of_product.price_in_rupees
+        cart_item.save()
+
     return redirect('cart')

@@ -29,17 +29,27 @@
     style="display:inline-flex; float: right; padding: 10px; background-color:#27447E;width: 100%; margin-bottom: 20px; height:50px;">
 
     <a href="{% url 'home' %}"><button type="button" class="btn btn-light" id="navbarContent">HOME</button></a>
-    <a href="{% url 'add-product' %}"><button type="button" class="btn btn-light" id="navbarContent">Start
-            Selling</button></a>
 
+    {% if 'seller' not in request.path %}
+    <a href="{% url 'seller' %}"><button type="button" class="btn btn-light" id="navbarContent">Start
+            Selling</button></a>
+    {% endif %}
+    {% if 'seller' in request.path %}
+    <a href="{% url 'add-product' %}"><button type="button" class="btn btn-light" id="navbarContent">Add
+            Products</button></a>
+    <!-- <a href="{% url 'add-product' %}"><button type="button" class="btn btn-light" id="navbarContent">Add
+            My Products</button></a> -->
+    {% endif %}
     <!-- SEARCH BAR -->
 
     <div class="container-fluid" style="margin-left: 200px; margin: right 250px;width: 650px; ">
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form method="get" action="{% url 'home' %}" class="d-flex">
+            <input name="q" class="form-control me-2" type="Search for Products..." placeholder="Search"
+                aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
     </div>
+
     <!-- PROFILE IMAGE -->
 
     <!-- <img src="/profile-icon.png" alt="" style="padding-right: 15px; border-radius: 50%;"> -->
@@ -62,8 +72,10 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="index.html">Profile</a></li>
-                <li><a class="dropdown-item" href="index.html">My Products</a></li>
+                <li><a class="dropdown-item" href="{% url 'products' %}">My Products</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                <li><a class="dropdown-item" href="{% url 'sold-products' %}">My Selling Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">My Buying Orders</a></li>
             </ul>
         </div>
     </div>
