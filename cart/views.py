@@ -23,6 +23,7 @@ def get_localtime(utctime):
 @login_required(login_url='login')
 def cart(request):
     user = request.user
+    # print(user.first_name, user.last_name)
     cart = {}
     try:
         pr_obj = Profile.objects.filter(user=user).first()
@@ -39,13 +40,14 @@ def cart(request):
             email = ci.product.created_by.user.email
             product = ci.product.product_name
             price = ci.product.price_in_rupees
-            phone = "9073221"
-            buyer = user
+            phone = cart.user.phone
+            buyer = user.first_name, user.last_name
+            print(buyer)
             ci.product.is_sold = True
             ci.product.save()
             now = get_localtime(datetime.now())
             order = Order.objects.create(sold_by=ci.product.created_by,
-                                         bought_by=pr_obj, product=ci.product, time=now)
+                                         bought_by=pr_obj, product=ci.product, time=now, price=price)
             order.save()
             ci.delete()
             send_mail_to_vendor(email, product, buyer, phone, price)

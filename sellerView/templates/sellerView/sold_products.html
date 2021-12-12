@@ -7,7 +7,7 @@ Bought by &emsp; &emsp; Phone &emsp; &emsp; Price &emsp; &emsp; Product-Name &em
 <br>
 
 {% for o in orders %}
-{{o.bought_by}} &emsp; &emsp; {{o.bought_by.phone}} &emsp; &emsp; {{o.product.price_in_rupees}} &emsp; &emsp;
+{{o.bought_by}} &emsp; &emsp; {{o.bought_by.phone}} &emsp; &emsp; {{o.price}} &emsp; &emsp;
 <a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a> &emsp; &emsp;
 {{o.time}}
 {% if o.completed %}
