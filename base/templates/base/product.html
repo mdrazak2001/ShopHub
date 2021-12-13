@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<h1>{{product.product_name}} {{product.created_by}}</h1>
+<h1>{{product.product_name}} <span>&#8377;</span> {{product.price_in_rupees}} /- </h1>
 
 {% for image in product.productimage_set.all %}
 <div>
@@ -11,8 +11,8 @@
 </div>
 {% endfor %}
 
-
+{% if not product.is_sold and request.user.id != product.created_by.user.id %}
 <a href="{% url 'add-to-cart' product.id %}">Add to Cart</a>
-
+{% endif %}
 
 {% endblock content %}

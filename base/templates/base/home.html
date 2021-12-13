@@ -13,7 +13,7 @@
     {% if p.created_by.user.id == request.user.id or request.user.is_superuser%}
     <a href="{% url 'delete-product' p.id %}">Delete</a>
     {% endif %}
-    {% if request.user.id != p.created_by.user.id %}
+    {% if request.user.id != p.created_by.user.id and not request.user.is_superuser %}
     <a href="{% url 'add-to-cart' p.id %}">Add to Cart</a>
     {% endif %}
     <span>&#8377;</span>{{p.price_in_rupees}}/-

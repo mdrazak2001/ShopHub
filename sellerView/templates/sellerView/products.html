@@ -7,6 +7,9 @@
 {% for p in products%}
 
 <div>
+    {% if p.is_sold %}
+    SOLD!!
+    {% endif %}
     <a href="{% url 'view-product' p.id %}">{{p.product_name}}</a> {{p.created_at}}
     {% if p.created_by.user.id == request.user.id or request.user.is_superuser%}
     <a href="{% url 'delete-product' p.id %}">Delete</a>

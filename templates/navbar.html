@@ -30,16 +30,15 @@
 
     <a href="{% url 'home' %}"><button type="button" class="btn btn-light" id="navbarContent">HOME</button></a>
 
-    {% if 'seller' not in request.path %}
+    {% if 'seller' not in request.path and not request.user.is_superuser %}
     <a href="{% url 'seller' %}"><button type="button" class="btn btn-light" id="navbarContent">Start
             Selling</button></a>
     {% endif %}
     {% if 'seller' in request.path %}
     <a href="{% url 'add-product' %}"><button type="button" class="btn btn-light" id="navbarContent">Add
             Products</button></a>
-    <!-- <a href="{% url 'add-product' %}"><button type="button" class="btn btn-light" id="navbarContent">Add
-            My Products</button></a> -->
     {% endif %}
+
     <!-- SEARCH BAR -->
 
     <div class="container-fluid" style="margin-left: 200px; margin: right 250px;width: 650px; ">
@@ -56,8 +55,10 @@
 
     <!-- DROPDOWN -->
     {% if request.user.is_authenticated  %}
+    {% if not request.user.is_superuser %}
     <a href="{% url 'cart' %}"><button type="button" class="btn btn-light" id="navbarContent">My
             Cart</button></a>
+    {% endif %}
     <div class="navbarDropdown">
         <div class="dropdown">
             <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -71,11 +72,12 @@
                 {% endif %}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="index.html">Profile</a></li>
-                <li><a class="dropdown-item" href="{% url 'products' %}">My Products</a></li>
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                {% if not request.user.is_superuser %}
                 <li><a class="dropdown-item" href="{% url 'sold-products' %}">My Selling Orders</a></li>
                 <li><a class="dropdown-item" href="{% url 'buyer' %}">My Buying Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'products' %}">My Products</a></li>
+                {% endif %}
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </div>
     </div>

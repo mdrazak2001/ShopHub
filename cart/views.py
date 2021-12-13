@@ -51,6 +51,7 @@ def cart(request):
             order.save()
             ci.delete()
             send_mail_to_vendor(email, product, buyer, phone, price)
+            return redirect('buyer')
         cart.total_price = 0
         cart.save()
 

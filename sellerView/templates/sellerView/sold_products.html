@@ -3,20 +3,24 @@
 {% block content %}
 
 <h1>Hello Seller, {{request.user}}, your sold products are : </h1>
-Bought by &emsp; &emsp; Phone &emsp; &emsp; Price &emsp; &emsp; Product-Name &emsp; &emsp; Time &emsp; &emsp; Status
+Order ID &emsp; &emsp; Bought by &emsp; &emsp; Phone &emsp; &emsp; Price &emsp; &emsp; Product-Name &emsp; &emsp; Time
+&emsp; &emsp; Status
 <br>
 
 {% for o in orders %}
-{{o.bought_by}} &emsp; &emsp; {{o.bought_by.phone}} &emsp; &emsp; {{o.price}} &emsp; &emsp;
+{{o.id}} &emsp; &emsp; {{o.bought_by}} &emsp; &emsp; {{o.bought_by.phone}} &emsp; &emsp; {{o.price}} &emsp; &emsp;
 <a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a> &emsp; &emsp;
-{{o.time}}
+{{o.time}} &emsp; &emsp;
 {% if o.completed %}
 Done
 {% else %}
 Not Done
 {% endif %}
+&emsp; &emsp;
 
-
+{% if not o.completed %}
+<a href="{% url 'action' o.id %}">Action</a>
+{% endif %}
 <br>
 {% endfor %}
 

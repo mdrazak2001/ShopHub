@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'cart',
     'sellerView',
     'buyerview',
+    'background_task',
 ]
 
 MIDDLEWARE = [

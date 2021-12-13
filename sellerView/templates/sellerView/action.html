@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>action</h1>
+<form method="post">
+    {% csrf_token %}
+    <!-- <input class="form-control" id="party" type="datetime-local" name="delivery_time"> -->
+    <input name="delivery_time" type="datetime-local" required=""
+        value="{{order.pick_up_datetime|date:'Y-m-d'}} {{order.pick_up_datetime|time:'H:i:s'}}">
+    <button type="submit" class="pure-button pure-button-primary">Confirm</button>
+</form>
+
+
+{% endblock %}

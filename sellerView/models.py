@@ -17,6 +17,7 @@ class Order(models.Model):
     price = models.FloatField(default=0)
     time = models.DateTimeField(default=datetime.datetime.now(), blank=True)
     completed = models.BooleanField(default=False)
+    # cancelled = models.BooleanField(default=False)
 
     def __str__(self):
         return self.product.product_name + ' ' + str("Order")
