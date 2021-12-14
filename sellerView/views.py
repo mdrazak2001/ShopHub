@@ -54,15 +54,9 @@ def Action(request, pk):
         delivery_time_obj = dt.datetime.strptime(
             str_delivery_time, '%Y-%m-%d %H:%M:%S')
         now = dt.datetime.now()
-        # print(now)
-        # print(delivery_time_obj)
         diff = delivery_time_obj - now
         seconds = diff.total_seconds()
         order_ob = Order.objects.get(id=pk)
-        # buyer = Profile.objects.filter(id=order_ob.bought_by.id).first()
-        # email = buyer.user.email
-        # print(seconds)
-        # buyer = buyer.user.id
         seconds = int(seconds)
         notify_buyer(order_ob.id, schedule=seconds)
 
@@ -78,10 +72,6 @@ def send_mail_to_buyer(email, product, seller, phone, price, order_id):
 
 @background(schedule=60)
 def notify_buyer(order_id):
-    # lookup user by id and send them a message
-    # user = User.objects.get(pk=user_id)
-    # user = Profile.objects.get(id = buyer_id)
-    # user.email_user('Here is a notification', 'You have been notified')
     order_ob = Order.objects.get(id=order_id)
     seller = Profile.objects.filter(id=order_ob.sold_by.id).first()
     buyer = Profile.objects.filter(id=order_ob.bought_by.id).first()

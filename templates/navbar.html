@@ -29,6 +29,9 @@
     style="display:inline-flex; float: right; padding: 10px; background-color:#27447E;width: 100%; margin-bottom: 20px; height:50px;">
 
     <a href="{% url 'home' %}"><button type="button" class="btn btn-light" id="navbarContent">HOME</button></a>
+    {% if request.user.is_superuser %}
+    <a href="{% url 'orders' %}"><button type="button" class="btn btn-light" id="navbarContent">Orders</button></a>
+    {% endif %}
 
     {% if 'seller' not in request.path and not request.user.is_superuser %}
     <a href="{% url 'seller' %}"><button type="button" class="btn btn-light" id="navbarContent">Start

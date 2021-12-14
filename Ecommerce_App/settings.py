@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'sellerView',
     'buyerview',
     'background_task',
+    'adminview',
 ]
 
 MIDDLEWARE = [

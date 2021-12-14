@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333;
+            /* old IE */
+            background-color: #fff;
+            /* Modern Browsers */
+        }
+    </style>
+</head>
+
+<body>
+    <div class='wrapper'>
+        <div class='header'>
+            <p class='title'>Orders Invoice</p>
+        </div>
+        <hr>
+        Order ID &emsp; &emsp; Sold by &emsp; &emsp; Bought by &emsp; &emsp; Sellers Number &emsp; &emsp; Buyers Number
+        &emsp;
+        &emsp; Price &emsp; &emsp;
+        Product-Name &emsp; &emsp; Time
+        &emsp; &emsp; Status<br>
+        <div>
+            {% for o in orders %}
+            {{o.id}} &emsp; &emsp; {{o.sold_by}} &emsp; &emsp; {{o.bought_by}} &emsp; &emsp; {{o.sold_by.phone}} &emsp;
+            &emsp;
+            {{o.bought_by.phone}} &emsp; &emsp;
+            {{o.price}} &emsp; &emsp;
+            <a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a> &emsp; &emsp;
+            {{o.time}}
+            {% if o.completed %}
+            Done
+            {% else %}
+            Not Done
+            {% endif %}
+
+            <br>
+            {% endfor %}
+        </div>
+</body>
+
+</html>
