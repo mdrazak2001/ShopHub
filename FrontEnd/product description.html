@@ -120,106 +120,70 @@
 
     </div>
     <br><br><br>
-    <!-- PRODUCT CARD -->
-    
-    <div class="container">
-        <div class="row">
-            <div class="col md-4">
-                <div class="card">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                          <li data-target="#myCarousel" data-slide-to="1"></li>
-                          <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-                              
-                        <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                  <div class="item active">
-                                    <img src="/FrontEnd/Images/jeans.jpg" alt="Los Angeles">
-                                  </div>
-                              
-                                  <div class="item">
-                                    <img src="/FrontEnd/Images/jeans2.jpg" alt="Chicago">
-                                  </div>
-                              
-                                  <div class="item">
-                                    <img src="/FrontEnd/Images/jeans.jpg" alt="New York">
-                                  </div>
-                                </div>
-                    </div>
-                    <h1>Tailored Jeans <a href="#"><img src="/FrontEnd/Images/dustbin.png" alt="" style="width: 30px;"></a></h1>
-                    <p class="price">19.99</p>               
-                    <p>Some text about the jeans..</p>
-                    <p><button>Add to Cart</button></p>
+    <!-- PRODUCT DETAILS -->
+    <div class="col-sm-9 padding-right">
+        <div class="product-details"><!--product-details-->
+            <div class="col-sm-5">
+                <div class="view-product">
+                    <img src="/FrontEnd/Images/jeans.jpg" alt="" />
+                    <h3>ZOOM</h3>
                 </div>
+                <div id="similar-product" class="carousel slide" data-ride="carousel">
+                    
+                      <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                            </div>
+                            <div class="item">
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                            </div>
+                            <div class="item">
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                              <a href=""><img src="/FrontEnd/Images/jeans.jpg" alt=""></a>
+                            </div>
+                            
+                        </div>
+
+                      <!-- Controls -->
+                      <a class="left item-control" href="#similar-product" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                      </a>
+                      <a class="right item-control" href="#similar-product" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                </div>
+
             </div>
-            <div class="col md-4">
-                <div class="card">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                          <li data-target="#myCarousel" data-slide-to="1"></li>
-                          <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-                              
-                        <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                  <div class="item active">
-                                    <img src="/FrontEnd/Images/jeans.jpg" alt="Los Angeles">
-                                  </div>
-                              
-                                  <div class="item">
-                                    <img src="/FrontEnd/Images/jeans2.jpg" alt="Chicago">
-                                  </div>
-                              
-                                  <div class="item">
-                                    <img src="/FrontEnd/Images/jeans.jpg" alt="New York">
-                                  </div>
-                                </div>
-                    </div>
-                    <h1>Tailored Jeans<a href="#"><img src="/FrontEnd/Images/dustbin.png" alt="" style="width: 30px;"></a></h1>
-                    <p class="price">19.99</p>               
-                    <p>Some text about the jeans..</p>
-                    <p><button>Add to Cart</button></p>
-                </div>
-            </div>
-            <div class="col md-4">
-                <div class="card">
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                          <li data-target="#myCarousel" data-slide-to="1"></li>
-                          <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-                              
-                        <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                  <div class="item active">
-                                    <img src="/FrontEnd/Images/jeans.jpg" alt="Los Angeles">
-                                  </div>
-                              
-                                  <div class="item">
-                                    <img src="/FrontEnd/Images/jeans2.jpg" alt="Chicago">
-                                  </div>
-                              
-                                  <div class="item">
-                                    <img src="/FrontEnd/Images/jeans.jpg" alt="New York">
-                                  </div>
-                                </div>
-                    </div>
-                    <h1>Tailored Jeans<a href="#"><img src="/FrontEnd/Images/dustbin.png" alt="" style="width: 30px;"></a></h1>
-                    <p class="price">19.99</p>               
-                    <p>Some text about the jeans..</p>
-                    <p><button>Add to Cart</button></p>
-                </div>
+            <div class="col-sm-7">
+                <div class="product-information"><!--/product-information-->
+                    <img src="/FrontEnd/Images/jeans2.jpg" class="newarrival" alt="" />
+                    <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
+                    <p>Web ID: 1089772</p>
+                    <img src="/FrontEnd/Images/jeans2.jpg" alt="" />
+                    <span>
+                        <span>US $59</span>
+                        <label>Quantity:</label>
+                        <input type="text" value="3" />
+                        <button type="button" class="btn btn-fefault cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Add to cart
+                        </button>
+                    </span>
+                    <p><b>Availability:</b> In Stock</p>
+                    <p><b>Condition:</b> New</p>
+                    <p><b>Brand:</b> E-SHOPPER</p>
+                    <a href=""><img src="/FrontEnd/Images/jeans2.jpg" class="share img-responsive"  alt="" /></a>
+                </div><!--/product-information-->
             </div>
         </div>
-    </div>
-    <br><br><br><br><br>
+    
+    
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
