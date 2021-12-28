@@ -2,14 +2,18 @@
 
 {% block content %}
 
-<h1>action</h1>
-<form method="post">
-    {% csrf_token %}
-    <!-- <input class="form-control" id="party" type="datetime-local" name="delivery_time"> -->
-    <input name="delivery_time" type="datetime-local" required=""
-        value="{{order.pick_up_datetime|date:'Y-m-d'}} {{order.pick_up_datetime|time:'H:i:s'}}">
-    <button type="submit" class="pure-button pure-button-primary">Confirm</button>
-</form>
+<div class="container" style="border-style : solid; width: 500px;height: 300px; text-align: center;">
+    <h1>Select Your Delivery Time</h1>
+    <br><br>
+    <form method="post">
+        {% csrf_token %}
+        <!-- <input class="form-control" id="party" type="datetime-local" name="delivery_time"> -->
+        <input name="delivery_time" type="datetime-local" required=""
+            value="{{order.pick_up_datetime|date:'Y-m-d'}} {{order.pick_up_datetime|time:'H:i:s'}}">
+        <br><br><br>
+        <button type="submit" class="btn btn-warning">Submit</button>
+    </form>
+</div>
 
 
 {% endblock %}

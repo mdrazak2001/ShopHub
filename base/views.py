@@ -80,6 +80,8 @@ def userLogin(request):
                                      'Wrong creds')
                 return redirect('login')
             login(request, user)
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
             return redirect('home')
     page = 'login'
     return render(request, 'base/login_register.html', {'page': page})

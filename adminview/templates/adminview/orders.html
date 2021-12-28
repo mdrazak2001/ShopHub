@@ -2,29 +2,44 @@
 
 {% block content %}
 
-<h1>Orders </h1>
-
-Order ID &emsp; &emsp; Sold by &emsp; &emsp; Bought by &emsp; &emsp; Sellers Number &emsp; &emsp; Buyers Number &emsp;
-&emsp; Price &emsp; &emsp;
-Product-Name &emsp; &emsp; Time
-&emsp; &emsp; Status<br>
-
-{% for o in orders %}
-{{o.id}} &emsp; &emsp; {{o.sold_by}} &emsp; &emsp; {{o.bought_by}} &emsp; &emsp; {{o.sold_by.phone}} &emsp; &emsp;
-{{o.bought_by.phone}} &emsp; &emsp;
-{{o.price}} &emsp; &emsp;
-<a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a> &emsp; &emsp;
-{{o.time}}
-{% if o.completed %}
-Done
-{% else %}
-Not Done
-{% endif %}
-
-<br>
-{% endfor %}
-
-<a href="{% url 'generate-pdf-order' %}"><button type="button" class="btn btn-dark" id="navbarContent">Download
-        PDF</button></a>
+<h1 class="text-center">Orders </h1>
+<div class="container">
+        <table class="table table-striped table-bordered table-responsive-md btn-table">
+                <thead>
+                        <tr class="text-center">
+                                <th>Order ID</th>
+                                <th>Sold by</th>
+                                <th>Bought by</th>
+                                <th>Sellers Number</th>
+                                <th>Buyers Number</th>
+                                <th>Product name</th>
+                                <th>Price</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        {% for o in orders %}
+                        <tr class="text-center">
+                                <td>{{o.id}}</td>
+                                <td>{{o.sold_by}}</td>
+                                <td>{{o.bought_by}}</td>
+                                <td>{{o.sold_by.phone}}</td>
+                                <td>{{o.bought_by.phone}}</td>
+                                <td><a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a></td>
+                                <td>{{o.price}}</td>
+                                <td>{{o.time}}</td>
+                                {% if o.completed %}
+                                <td>Done</td>
+                                {% else %}
+                                <td>Not Done</td>
+                                {% endif %}
+                        </tr>
+                        {% endfor %}
+                </tbody>
+        </table>
+        <a href="{% url 'generate-pdf-order' %}"><button type="button" class="btn btn-dark" id="navbarContent">Download
+                        PDF</button></a>
+</div>
 
 {% endblock %}

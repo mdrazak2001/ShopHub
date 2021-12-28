@@ -5,27 +5,52 @@
 <h1>Cart Page</h1>
 
 {% if cart.cartitem_set.first == none %}
-Fill cart
+Please Fill cart To buy Products !!
 {% else %}
 Hi {{user}}, Your Cart looks good !!
-{% endif %}
+<div class="shopping-cart">
+
+    <div class="column-labels">
+        <label class="product-image">Image</label>
+        <label class="product-details">Product</label>
+        <label class="product-price">Price</label>
+        <label class="product-removal">Remove</label>
+        <label class="product-line-price">Total</label>
+    </div>
+    {% for ci in cart.cartitem_set.all %}
+    <div class="product">
+        <div class="product-image">
+            <img src="{{ci.product.productimage_set.first.images.url}}">
+        </div>
+        <div class="product-details">
+            <div class="product-title">{{ci.product.product_name}}</div>
+            <p class="product-description">{{ci.product.descripton}}</p>
+        </div>
+        <div style="float: left; width: 12%;">&#8377;{{ci.product.price_in_rupees}}</div>
 
 
-{% for ci in cart.cartitem_set.all %}
-<div><a href="{%  url 'carti' ci.product.id%}">{{ci.product.product_name}}</a>
-    <a href="{% url 'carti' ci.product.id %}"><img src="{{ci.product.productimage_set.first.images.url}}" alt=""
-            width="200" height="200"></a>
-    <a href="{% url 'remove-item' ci.id %}">Remove Item</a>
-    {{ci.product.price_in_rupees}}
+        <a href="{% url 'remove-item' ci.id %}">
+            <div class="product-removal">
+                <button class="remove-product">
+                    Remove
+                </button>
+            </div>
+        </a>
+        <div style="float: left; width: 12%; text-align: right;">&#8377;{{ci.product.price_in_rupees}}</div>
+    </div>
+    {% endfor %}
+
+    <div class="totals">
+        <div class="totals-item totals-item-total">
+            <label>Grand Total</label>
+            <div style="text-align: center;">&#8377;{{cart.total_price}} </div>
+        </div>
+    </div>
+    <form method="post" action="">
+        {% csrf_token %}
+        <p><button type="submit" class="checkout">Checkout</button></p>
+    </form>
 </div>
-
-{% endfor %}
-
-<h1>Total Price : {{cart.total_price}}</h1>
-
-<form method="post" action="">
-    {% csrf_token %}
-    <p><input type="submit" value="BUY" /></p>
-</form>
+{% endif %}
 
 {% endblock %}

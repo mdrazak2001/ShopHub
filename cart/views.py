@@ -34,6 +34,8 @@ def cart(request):
     if request.method == 'POST':
         pr_obj = Profile.objects.filter(user=user).first()
         cart = Cart.objects.filter(user=pr_obj).first()
+        cart.total_price = 0
+        cart.save()
         cart_items = CartItem.objects.filter(cart=cart)
         for ci in cart_items:
             # print(ci.product.product_name)
@@ -42,7 +44,7 @@ def cart(request):
             price = ci.product.price_in_rupees
             phone = cart.user.phone
             buyer = user.first_name, user.last_name
-            print(buyer)
+            # print(buyer)
             ci.product.is_sold = True
             ci.product.save()
             now = get_localtime(datetime.now())
@@ -51,9 +53,7 @@ def cart(request):
             order.save()
             ci.delete()
             send_mail_to_vendor(email, product, buyer, phone, price)
-            return redirect('buyer')
-        cart.total_price = 0
-        cart.save()
+        return redirect('buyer')
 
     return render(request, 'cart/cart.html', {'user': user, 'cart': cart})
 

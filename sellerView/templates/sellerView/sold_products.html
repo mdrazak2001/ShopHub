@@ -3,26 +3,43 @@
 {% block content %}
 
 <h1>Hello Seller, {{request.user}}, your sold products are : </h1>
-Order ID &emsp; &emsp; Bought by &emsp; &emsp; Phone &emsp; &emsp; Price &emsp; &emsp; Product-Name &emsp; &emsp; Time
-&emsp; &emsp; Status
-<br>
 
-{% for o in orders %}
-{{o.id}} &emsp; &emsp; {{o.bought_by}} &emsp; &emsp; {{o.bought_by.phone}} &emsp; &emsp; {{o.price}} &emsp; &emsp;
-<a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a> &emsp; &emsp;
-{{o.time}} &emsp; &emsp;
-{% if o.completed %}
-Done
-{% else %}
-Not Done
-{% endif %}
-&emsp; &emsp;
+<div class="container">
+    <table class="table table-striped table-bordered table-responsive-md btn-table">
+        <thead>
+            <tr class="text-center">
+                <th>Order ID</th>
+                <th>Bought by</th>
+                <th>Buyers Number</th>
+                <th>Price</th>
+                <th>Product name</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in orders %}
+            <tr class="text-center">
+                <td>{{o.id}}</td>
+                <td>{{o.bought_by}}</td>
+                <td>{{o.bought_by.phone}}</td>
+                <td>{{o.price}}</td>
+                <td><a href="{% url 'view-product' o.product.id %}">{{o.product.product_name}}</a></td>
+                <td>{{o.time}}</td>
+                {% if not o.completed %}
+                <td>Not Done</td>
+                <td><a href="{% url 'action' o.id %}">Set Delivery Time</a></td>
+                {% else %}
+                <td>Done</td>
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-{% if not o.completed %}
-<a href="{% url 'action' o.id %}">Action</a>
-{% endif %}
-<br>
-{% endfor %}
 
 
 {% endblock %}
