@@ -1,6 +1,10 @@
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
 import datetime as dt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.template import context
 from base.models import *
 from sellerView.forms import DateTimeInput
 from sellerView.models import Order
@@ -8,7 +12,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 import time
 from background_task import background
-# Create your views here.
+import plotly.express as px
+import plotly.offline as opy
 
 
 @login_required(login_url='login')
@@ -33,6 +38,56 @@ def soldProducts(request):
     pr_obj = Profile.objects.filter(user=user).first()
     orders = Order.objects.filter(sold_by=pr_obj)
     return render(request, 'sellerView/sold_products.html', {'orders': orders})
+
+
+@login_required(login_url='login')
+def graph(request):
+    context = {}
+    user = request.user
+    pr_obj = Profile.objects.filter(user=user).first()
+    orders = Order.objects.filter(sold_by=pr_obj)
+    print(orders)
+    products = []
+    dates = []
+    prices = []
+    np_array = []
+    for order in orders:
+        time = order.time
+        # time = time.date()
+        product = order.product.product_name
+        price = int(order.product.price_in_rupees)
+        products.append(product)
+        dates.append(time)
+        prices.append(price)
+        np_array.append([product, price, time])
+
+    array = np.array(np_array)
+    column_values = ['Product', 'Price', 'Time']
+    df = pd.DataFrame(data=array, columns=column_values)
+    # print(df)
+
+    fig = px.line(
+        data_frame=df,
+        x='Time',
+        y='Price',
+        custom_data=['Product', 'Price', 'Time'],
+        markers=True
+    )
+    fig.update_layout(
+        hovermode="x",
+    )
+
+    fig.update_traces(
+        hovertemplate="<br>".join([
+            "Product: %{customdata[0]}",
+            "Price: %{y}",
+        ])
+    )
+
+    div = opy.plot(fig, auto_open=False, output_type='div')
+    context['fig'] = div
+
+    return render(request, 'sellerView/graph.html', context)
 
 
 @login_required(login_url='login')

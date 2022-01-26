@@ -27,19 +27,17 @@
     <div class="container-fluid"> -->
 <div class="container-fluid"
     style="display:inline-flex; float: right; padding: 10px; background-color:#27447E;width: 100%; margin-bottom: 20px; height:50px;">
-
-    <a href="{% url 'home' %}"><button type="button" class="btn btn-light" id="navbarContent">HOME</button></a>
+    <!-- HTML !-->
+    <a href="{% url 'home' %}"><button class="button-50" role="button">Home</button></a>
     {% if request.user.is_superuser %}
-    <a href="{% url 'orders' %}"><button type="button" class="btn btn-light" id="navbarContent">Orders</button></a>
+    <a href="{% url 'orders' %}"><button class="button-50" role="button">Orders</button></a>
     {% endif %}
 
     {% if 'seller' not in request.path and not request.user.is_superuser %}
-    <a href="{% url 'seller' %}"><button type="button" class="btn btn-light" id="navbarContent">Start
-            Selling</button></a>
+    <a href="{% url 'seller' %}"><button class="button-50" role="button">Start Selling</button></a>        
     {% endif %}
     {% if 'seller' in request.path %}
-    <a href="{% url 'add-product' %}"><button type="button" class="btn btn-light" id="navbarContent">Add
-            Products</button></a>
+    <a href="{% url 'add-product' %}"><button class="button-50" role="button">Add Products</button></a>           
     {% endif %}
 
     <!-- SEARCH BAR -->
@@ -48,7 +46,7 @@
         <form method="get" action="{% url 'home' %}" class="d-flex">
             <input name="q" class="form-control me-2" type="Search for Products..." placeholder="Search"
                 aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
+            <button class="button-50" role="button" type="submit">Search</button>
         </form>
     </div>
 
@@ -59,8 +57,7 @@
     <!-- DROPDOWN -->
     {% if request.user.is_authenticated  %}
     {% if not request.user.is_superuser %}
-    <a href="{% url 'cart' %}"><button type="button" class="btn btn-light" id="navbarContent">My
-            Cart</button></a>
+    <a href="{% url 'cart' %}"><button class="button-50" role="button">My Cart</button></a>   
     {% endif %}
     <div class="navbarDropdown">
         <div class="dropdown">

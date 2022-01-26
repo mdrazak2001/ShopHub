@@ -1,194 +1,203 @@
-.bodyClass{
-    height: 4500px;
-    /* overflow: hidden; */
+.bodyClass {
+  height: 4500px;
+  /* overflow: hidden; */
 }
-#navbarContent{
-    margin-left: 15px;
-    margin-right: 5px;
+#navbarContent {
+  margin-left: 15px;
+  margin-right: 5px;
 }
-.navbarDropdown{
-    margin-right: 30px;
+.navbarDropdown {
+  margin-right: 30px;
 }
 
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
 
-input[type=text], select, textarea{
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Style the container */
+.container {
+  margin-top: 175px;
+  border-radius: 5px;
+  width: 700px;
+  height: 3000px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25,
+  .col-75,
+  input[type="submit"] {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
+    margin-top: 0;
   }
-  
-  input[type=password], select, textarea{
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Style the container */
+.container {
+  margin-top: 200px;
+  border-radius: 5px;
+  width: 700px;
+  height: 450px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25,
+  .col-75,
+  input[type="submit"] {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
+    margin-top: 0;
   }
-  /* Style the label to display next to the inputs */
-  label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-  }
-  
-  /* Style the submit button */
-  input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-  }
-  
-  /* Style the container */
-  .container {
-    margin-top: 175px;
-    border-radius: 5px;
-    width: 700px;
-    height: 3000px;
-    background-color: #f2f2f2;
-    padding: 20px;
-  }
-  
-  /* Floating column for labels: 25% width */
-  .col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-  }
-  
-  /* Floating column for inputs: 75% width */
-  .col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  }
+}
 
-  input[type=text], select, textarea{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
-  }
-  
-  input[type=password], select, textarea{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
-  }
-  /* Style the label to display next to the inputs */
-  label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-  }
-  
-  /* Style the submit button */
-  input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-  }
-  
-  /* Style the container */
-  .container {
-    margin-top: 200px;
-    border-radius: 5px;
-    width: 700px;
-    height: 450px;
-    background-color: #f2f2f2;
-    padding: 20px;
-  }
-  
-  /* Floating column for labels: 25% width */
-  .col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-  }
-  
-  /* Floating column for inputs: 75% width */
-  .col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
 
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-    }
-    
-    .price {
-    color: grey;
-    font-size: 22px;
-    }
-    
-    .card button {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-    }
-    
-    .card button:hover {
-    opacity: 0.7;
-    }
+.price {
+  color: grey;
+  font-size: 22px;
+}
 
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
 
+.card button:hover {
+  opacity: 0.7;
+}
 
-    .product-image {
+.product-image {
   float: left;
   width: 20%;
 }
@@ -220,34 +229,49 @@ input[type=text], select, textarea{
 }
 
 /* This is used as the traditional .clearfix class */
-.group:before, .shopping-cart:before, .column-labels:before, .product:before, .totals-item:before,
+.group:before,
+.shopping-cart:before,
+.column-labels:before,
+.product:before,
+.totals-item:before,
 .group:after,
 .shopping-cart:after,
 .column-labels:after,
 .product:after,
 .totals-item:after {
-  content: '';
+  content: "";
   display: table;
 }
 
-.group:after, .shopping-cart:after, .column-labels:after, .product:after, .totals-item:after {
+.group:after,
+.shopping-cart:after,
+.column-labels:after,
+.product:after,
+.totals-item:after {
   clear: both;
 }
 
-.group, .shopping-cart, .column-labels, .product, .totals-item {
+.group,
+.shopping-cart,
+.column-labels,
+.product,
+.totals-item {
   zoom: 1;
 }
 
 /* Apply clearfix in a few places */
 /* Apply dollar signs */
-.product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: '$';
+.product .product-price:before,
+.product .product-line-price:before,
+.totals-value:before {
+  content: "$";
 }
 
 /* Body/Header stuff */
 body {
   padding: 0px 30px 30px 20px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
   font-weight: 100;
 }
 
@@ -269,7 +293,9 @@ label {
   margin-bottom: 15px;
   border-bottom: 1px solid #eee;
 }
-.column-labels .product-image, .column-labels .product-details, .column-labels .product-removal {
+.column-labels .product-image,
+.column-labels .product-details,
+.column-labels .product-removal {
   text-indent: -9999px;
 }
 
@@ -385,7 +411,7 @@ label {
   }
 
   .product-quantity:before {
-    content: 'x';
+    content: "x";
   }
 
   .product-removal {
@@ -411,7 +437,7 @@ label {
   }
 
   .product .product-line-price:before {
-    content: 'Item Total: $';
+    content: "Item Total: $";
   }
 
   .totals .totals-item label {
@@ -421,7 +447,6 @@ label {
     width: 40%;
   }
 }
-
 
 /* cart */
 
@@ -457,34 +482,49 @@ label {
 }
 
 /* This is used as the traditional .clearfix class */
-.group:before, .shopping-cart:before, .column-labels:before, .product:before, .totals-item:before,
+.group:before,
+.shopping-cart:before,
+.column-labels:before,
+.product:before,
+.totals-item:before,
 .group:after,
 .shopping-cart:after,
 .column-labels:after,
 .product:after,
 .totals-item:after {
-  content: '';
+  content: "";
   display: table;
 }
 
-.group:after, .shopping-cart:after, .column-labels:after, .product:after, .totals-item:after {
+.group:after,
+.shopping-cart:after,
+.column-labels:after,
+.product:after,
+.totals-item:after {
   clear: both;
 }
 
-.group, .shopping-cart, .column-labels, .product, .totals-item {
+.group,
+.shopping-cart,
+.column-labels,
+.product,
+.totals-item {
   zoom: 1;
 }
 
 /* Apply clearfix in a few places */
 /* Apply dollar signs */
-.product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: '$';
+.product .product-price:before,
+.product .product-line-price:before,
+.totals-value:before {
+  content: "$";
 }
 
 /* Body/Header stuff */
 body {
   padding: 0px 30px 30px 20px;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
   font-weight: 100;
 }
 
@@ -506,7 +546,9 @@ label {
   margin-bottom: 15px;
   border-bottom: 1px solid #eee;
 }
-.column-labels .product-image, .column-labels .product-details, .column-labels .product-removal {
+.column-labels .product-image,
+.column-labels .product-details,
+.column-labels .product-removal {
   text-indent: -9999px;
 }
 
@@ -622,7 +664,7 @@ label {
   }
 
   .product-quantity:before {
-    content: 'x';
+    content: "x";
   }
 
   .product-removal {
@@ -648,7 +690,7 @@ label {
   }
 
   .product .product-line-price:before {
-    content: 'Item Total: $';
+    content: "Item Total: $";
   }
 
   .totals .totals-item label {
@@ -663,9 +705,164 @@ label {
   width: 100% !important;
   height: 10vh;
 } */
-.self-grid{
+.self-grid {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-column-gap: 30px;
   grid-row-gap: 50px;
+}
+
+/* table */
+
+.dataTables_length,
+.dataTables_wrapper {
+  font-size: 1.6rem;
+  select,
+  input {
+    background-color: #f9f9f9;
+    border: 1px solid #999;
+    border-radius: 4px;
+    height: 3rem;
+    line-height: 2;
+    font-size: 1.8rem;
+    color: #333;
+  }
+
+  .dataTables_length,
+  .dataTables_filter {
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    display: inline-flex;
+  }
+}
+
+// paginate
+
+.paginate_button {
+  min-width: 4rem;
+  display: inline-block;
+  text-align: center;
+  padding: 1rem 1.6rem;
+  margin-top: -1rem;
+  border: 2px solid lightblue;
+  &:not(.previous) {
+    border-left: none;
+  }
+  &.previous {
+    border-radius: 8px 0 0 8px;
+    min-width: 7rem;
+  }
+  &.next {
+    border-radius: 0 8px 8px 0;
+    min-width: 7rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #eee;
+    text-decoration: none;
+  }
+}
+
+/* CSS */
+.button-64 {
+  align-items: center;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
+/* CSS */
+.button-50 {
+  appearance: button;
+  background-color: #000;
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50:focus {
+  text-decoration: none;
+}
+
+.button-50:hover {
+  text-decoration: none;
+}
+
+.button-50:active {
+  box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.button-50:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-50 {
+    padding: 12px 50px;
+  }
 }

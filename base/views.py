@@ -265,7 +265,10 @@ def addToCart(request, pk):
     cart = Cart.objects.filter(user=pr_obj).first()
     product = Product.objects.get(id=pk)
     dup_exists = CartItem.objects.filter(cart=cart, product=product).first()
-    if not dup_exists:
+    if user == product.created_by.user:
+        return redirect('home')
+    if (not dup_exists) and (user != product.created_by):
+        print(user, product.created_by)
         cart_item = CartItem.objects.create(cart=cart, product=product)
         price_of_product = Product.objects.get(id=cart_item.product.id)
 

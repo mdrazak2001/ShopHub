@@ -3,13 +3,11 @@
 {% block content %}
 
 <h1>Home Page</h1>
-
-<div class="container" style="height: 3000px;">
-    <div class="row">
+    
         {% for p in products%}
         {% if not p.is_sold  %}
-        <div class="col md-4">
-            <div class="card">
+        
+            <div class="card" style="width: 18rem; margin: 0%;">
                 <a href="{% url 'view-product' p.id %}">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -43,16 +41,16 @@
                 <p class="price">&#8377;{{p.price_in_rupees}}/-</p>
                 {% if request.user.id != p.created_by.user.id and not request.user.is_superuser %}
                 <a href="{% url 'add-to-cart' p.id %}">
-                    <p><button>Add to Cart</button></p>
+                    <p><button>Add to Carts</button></p>
                 </a>
                 {% endif %}
 
             </div>
-        </div>
+        
         {% endif %}
         {% endfor %}
-    </div>
-</div>
+    
+
 <script>
     // Handle Bootstrap carousel slide event
     $('.carousel').carousel({
