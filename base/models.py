@@ -25,7 +25,7 @@ class Product(models.Model):
     is_sold = models.BooleanField(default=False)
     descripton = models.TextField(null=True, blank=True)
     product_name = models.TextField(null=True, blank=True)
-    price_in_rupees = models.IntegerField(default=0)
+    price_in_rupees = models.IntegerField(default=0, blank=False)
 
     def __str__(self):
         return str(self.product_name)

@@ -27,8 +27,15 @@ SECRET_KEY = 'django-insecure-5=_=yar1j^+uuazb=*zb^=svp#!gpf(^ms5q5@h=paifbg(=79
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'b6ba-27-7-186-127.ngrok.io',
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://b6ba-27-7-186-127.ngrok.io'
+]
 
 # Application definition
 
@@ -45,7 +52,10 @@ INSTALLED_APPS = [
     'buyerview',
     'background_task',
     'adminview',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

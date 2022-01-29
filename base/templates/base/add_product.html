@@ -1,22 +1,25 @@
 {% extends 'main.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 <h1>Add product {{request.user.username}}</h1>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-
-    {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }}: {{ field }}
+    <div class="form-row">
+        <div class="form-group col-md-6 mb-0">
+          {{ form.product_name|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6 mb-0">
+          {{ form.descripton|as_crispy_field }}
+        </div>
     </div>
-    {% endfor %}
     <label for="images">Select images:</label>
     <input name="images" type="file" multiple="multiple">
-    <p><input type="submit" value="Create Product" /></p>
-
+    {{ form.price_in_rupees|as_crispy_field }}
+    <br> <br>
+    <center><button type="submit" class="button-64" role="button"><span class="text">Create Product</span></button></center>
+    
 </form>
 
 {% endblock content %}
