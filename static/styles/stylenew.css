@@ -1,7 +1,10 @@
 /* line 750 commented **/
+/* commented button 50 styling **/
 
 .bodyClass {
   height: 4500px;
+  background-color: white;
+  /* width: 4500px; */
   /* overflow: hidden; */
 }
 #navbarContent {
@@ -704,9 +707,9 @@ label {
 }
 
 /* .w-100 {
-  width: 100% !important;
-  height: 10vh;
-} */
+    width: 100% !important;
+    height: 10vh;
+  } */
 .self-grid {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -750,22 +753,22 @@ input {
   margin-top: -1rem;
   border: 2px solid lightblue;
   /* &:not(.previous) {
-    border-left: none;
-  }
-  &.previous {
-    border-radius: 8px 0 0 8px;
-    min-width: 7rem;
-  }
-  &.next {
-    border-radius: 0 8px 8px 0;
-    min-width: 7rem;
-  }
-
-  &:hover {
-    cursor: pointer;
-    background-color: #eee;
-    text-decoration: none;
-  }*/
+      border-left: none;
+    }
+    &.previous {
+      border-radius: 8px 0 0 8px;
+      min-width: 7rem;
+    }
+    &.next {
+      border-radius: 0 8px 8px 0;
+      min-width: 7rem;
+    }
+  
+    &:hover {
+      cursor: pointer;
+      background-color: #eee;
+      text-decoration: none;
+    }*/
 }
 
 /* CSS */
@@ -818,8 +821,12 @@ input {
   }
 }
 
+#myCarousel {
+  width: 50%;
+}
+
 /* CSS */
-.button-50 {
+/* .button-50 {
   appearance: button;
   background-color: #000;
   background-image: none;
@@ -868,4 +875,4 @@ input {
   .button-50 {
     padding: 12px 50px;
   }
-}
+} */

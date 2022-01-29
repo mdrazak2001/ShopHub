@@ -2,9 +2,13 @@
 
 {% block content %}
 
-<h1>Hello Seller, {{request.user}}</h1>
+<h1 class="text-center"style="background-color: red; color:white; font-weight:bold; padding:5px">Hello Seller, {{request.user}}</h1>
 
-<h1>Sell Your Products With 0% Comission !!!</h1>
+<h1 class="text-center"style="background-color: green; color:white;">Sell Your Products With 0% Comission !!!</h1>
 
+{% if 'seller' in request.path %}
+    <!-- <a href="{% url 'add-product' %}"><button class="btn btn-success" role="button">ADD PRODUCTS</button></a>   -->
+    <center><a href="{% url 'add-product' %}"><button class="button-64" role="button"><span class="text">ADD PRODUCTS</span></button></a></center>         
+{% endif %}
 
 {% endblock %}

@@ -4,7 +4,7 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    <h1>Sure Delete "{{product.product_name}}" ? </h1>
+    <h1 class="text-center"style="background-color: orange; color:white;">Sure Delete "{{product.product_name}}" ? </h1>
     {% for i in product.productimage_set.all %}
     <img src="{{i.images.url}}" alt="" width="200" height="200">
     {% endfor %}

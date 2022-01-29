@@ -1,9 +1,7 @@
 <header class="headerWarp" role="banner" style="width: 100%;">
     <div class="brandInner" style="width: 100%;">
         <div class="logo">
-            <a href="/" title="Home" rel="home" class="site-logo"><img style="height: 7rem;width: 7rem;"
-                    src="https://scontent.fblr4-3.fna.fbcdn.net/v/t1.6435-9/87503689_111002383835295_3256861726187978752_n.png?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=joJoEuK2r7UAX-K5KK3&_nc_ht=scontent.fblr4-3.fna&oh=acac6bab4aed6333fb3268f1823145e0&oe=61D6BA2C"
-                    alt="Home" /></a>
+            <a href="/" title="Home" rel="home" class="site-logo" style="color: white"><img src="https://rvce.edu.in/sites/default/files/logo_0.png" alt="Home" style="height:70px"></a>
         </div>
         <div class="brandName">
             <div class="l-region l-region--branding">
@@ -28,17 +26,18 @@
 <div class="container-fluid"
     style="display:inline-flex; float: right; padding: 10px; background-color:#27447E;width: 100%; margin-bottom: 20px; height:50px;">
     <!-- HTML !-->
-    <a href="{% url 'home' %}"><button class="button-50" role="button">Home</button></a>
+    <a href="{% url 'home' %}"><button class="btn btn-success" role="button">HOME</button></a>
+    &nbsp; 
+
     {% if request.user.is_superuser %}
-    <a href="{% url 'orders' %}"><button class="button-50" role="button">Orders</button></a>
+    <a href="{% url 'orders' %}"><button class="btn btn-success" role="button">ORDERS</button></a>
     {% endif %}
+    &nbsp; &nbsp;
 
     {% if 'seller' not in request.path and not request.user.is_superuser %}
-    <a href="{% url 'seller' %}"><button class="button-50" role="button">Start Selling</button></a>        
+    <a href="{% url 'seller' %}"><button class="btn btn-success" role="button">START SELLING</button></a>        
     {% endif %}
-    {% if 'seller' in request.path %}
-    <a href="{% url 'add-product' %}"><button class="button-50" role="button">Add Products</button></a>           
-    {% endif %}
+    &nbsp; &nbsp;
 
     <!-- SEARCH BAR -->
 
@@ -46,7 +45,7 @@
         <form method="get" action="{% url 'home' %}" class="d-flex">
             <input name="q" class="form-control me-2" type="Search for Products..." placeholder="Search"
                 aria-label="Search">
-            <button class="button-50" role="button" type="submit">Search</button>
+            <button class="btn btn-success" role="button" type="submit">SEARCH</button>
         </form>
     </div>
 
@@ -57,8 +56,9 @@
     <!-- DROPDOWN -->
     {% if request.user.is_authenticated  %}
     {% if not request.user.is_superuser %}
-    <a href="{% url 'cart' %}"><button class="button-50" role="button">My Cart</button></a>   
+    <a href="{% url 'cart' %}"><button class="btn btn-success" role="button">MY CART</button></a>   
     {% endif %}
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <div class="navbarDropdown">
         <div class="dropdown">
             <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -71,13 +71,14 @@
                 {{request.user.username}}
                 {% endif %}
             </button>
+            &nbsp;
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {% if not request.user.is_superuser %}
                 <li><a class="dropdown-item" href="{% url 'sold-products' %}">My Selling Orders</a></li>
                 <li><a class="dropdown-item" href="{% url 'buyer' %}">My Buying Orders</a></li>
                 <li><a class="dropdown-item" href="{% url 'products' %}">My Products</a></li>
                 {% endif %}
-                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">LOGOUT</a></li>
             </ul>
         </div>
     </div>
