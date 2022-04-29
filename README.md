@@ -9,3 +9,13 @@ Create a virtual environment  `requirements.txt` file should list all Python lib
 pip install -r requirements.txt
 ```
 
+To start the project locally :
+```
+python manage.py runserver
+```
+
+
+## Demo
+
+https://www.youtube.com/watch?v=w8clAPzcc3A&ab_channel=MARazak
+
